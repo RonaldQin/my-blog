@@ -10,11 +10,11 @@
 <body>
 
 	<!-- 导航 -->
-	<nav class="ui inverted attached segment m-padding-tb-mini m-shadow-small">
+	<nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padding-tb-mini m-shadow-small">
 		<div class="ui container">
 			<div class="ui inverted secondary stackable menu">
 				<h2 class="ui teal header item">Blog</h2>
-				<a href="#" class="m-item active item m-mobile-hide"><i class="home icon"></i>首页</a>
+				<a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
 				<a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
 				<a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
 				<a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
@@ -206,7 +206,7 @@
 
 
 	<!-- 底部footer -->
-	<footer class="ui inverted vertical segment m-padding-tb-massive">
+	<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padding-tb-massive">
 		<div class="ui center aligned container">
 			<div class="ui inverted divided stackable grid">
 				<div class="three wide column">
@@ -242,9 +242,10 @@
 			<p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2016 - 2017 Lirenmi Designed by Lirenmi</p>
 		</div>
 	</footer>
-
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
 <script>
 	$('.menu.toggle').click(function() {
 		$('.m-item').toggleClass('m-mobile-hide');
