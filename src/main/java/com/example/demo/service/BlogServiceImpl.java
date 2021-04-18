@@ -22,6 +22,7 @@ import com.example.demo.dao.BlogRepository;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.po.Blog;
 import com.example.demo.po.Type;
+import com.example.demo.util.MyBeanUtils;
 import com.example.demo.vo.BlogQuery;
 
 @Service
@@ -80,7 +81,8 @@ public class BlogServiceImpl implements BlogService {
 			throw new NotFoundException("不存在该博客。");
 		}
 		Blog b = optional.get();
-		BeanUtils.copyProperties(blog, b);
+		BeanUtils.copyProperties(blog, b, MyBeanUtils.getNullPropertyNames(blog));
+		b.setUpdateTime(new Date());
 		return blogRepository.save(b);
 	}
 
