@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+.typo li {
+	font-weight: 300;
+	padding: 4px 0;
+}
+
 .typo p {
 	font-size: 16px;
 	font-weight: 300;

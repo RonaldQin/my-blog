@@ -24,6 +24,7 @@ import com.example.demo.dao.BlogRepository;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.po.Blog;
 import com.example.demo.po.Type;
+import com.example.demo.util.MarkdownUtils;
 import com.example.demo.util.MyBeanUtils;
 import com.example.demo.vo.BlogQuery;
 
@@ -39,6 +40,20 @@ public class BlogServiceImpl implements BlogService {
 			throw new NotFoundException("不存在该博客。");
 		}
 		return optional.get();
+	}
+	
+	@Override
+	public Blog getAndConvert(Long id) {
+		Optional<Blog> optional = blogRepository.findById(id);
+		if (!optional.isPresent()) {
+			throw new NotFoundException("不存在该博客。");
+		}
+		Blog blog = optional.get();
+		Blog b = new Blog();
+		BeanUtils.copyProperties(blog, b);
+		String content = b.getContent();
+		b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+		return b;
 	}
 
 	@Override
