@@ -62,6 +62,7 @@ public class Blog {
 	
 	@Transient // 字段不做持久化
 	private String tagIds;
+	
 	private String description;
 	
 	public void init() {

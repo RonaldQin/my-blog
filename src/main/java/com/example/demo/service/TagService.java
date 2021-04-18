@@ -14,6 +14,7 @@ public interface TagService {
 	Page<Tag> listTag(Pageable pageable);
 	List<Tag> listTag();
 	List<Tag> listTag(String ids); // ids是以逗号隔开的id。
+	List<Tag> listTagTop(Integer size);
 	Tag updateTag(Long id, Tag tag);
 	void deleteTag(Long id);
 }
