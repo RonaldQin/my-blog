@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +59,16 @@ public class BlogServiceImpl implements BlogService {
 		}, pageable);
 	}
 
+	@Transactional
 	@Override
 	public Blog saveBlog(Blog blog) {
+		blog.setCreateTime(new Date());
+		blog.setUpdateTime(new Date());
+		blog.setViews(0);
 		return blogRepository.save(blog);
 	}
 
+	@Transactional
 	@Override
 	public Blog updateBlog(Long id, Blog blog) {
 		Optional<Blog> optional = blogRepository.findById(id);
@@ -73,6 +80,7 @@ public class BlogServiceImpl implements BlogService {
 		return blogRepository.save(b);
 	}
 
+	@Transactional
 	@Override
 	public void deleteBlog(Long id) {
 		blogRepository.deleteById(id);

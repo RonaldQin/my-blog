@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -38,6 +40,27 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public Page<Tag> listTag(Pageable pageable) {
 		return tagRepository.findAll(pageable);
+	}
+	
+	@Override
+	public List<Tag> listTag() {
+		return tagRepository.findAll();
+	}
+	
+	@Override
+	public List<Tag> listTag(String ids) {
+		return tagRepository.findAllById(convertToList(ids));
+	}
+	
+	private List<Long> convertToList(String ids) {
+		List<Long> list = new ArrayList<>();
+		if (null != ids && "".equals(ids)) {
+			String[] idarray = ids.split(",");
+			for (int i = 0; i < idarray.length; i++) {
+				list.add(new Long(idarray[i]));
+			}
+		}
+		return list;
 	}
 
 	@Override
