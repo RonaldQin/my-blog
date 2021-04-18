@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -44,6 +45,12 @@ public class TypeServiceImpl implements TypeService {
 	@Override
 	public Page<Type> listType(Pageable pageable) {
 		return typeRepository.findAll(pageable);
+	}
+	
+	@Transactional
+	@Override
+	public List<Type> listType() {
+		return typeRepository.findAll();
 	}
 
 	@Transactional

@@ -7,22 +7,36 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.po.Blog;
 import com.example.demo.service.BlogService;
+import com.example.demo.service.TypeService;
+import com.example.demo.vo.BlogQuery;
 
 @Controller
 @RequestMapping("/admin")
 public class BlogController {
 	@Autowired
 	private BlogService blogService;
+	@Autowired
+	private TypeService typeService;
 
-	@GetMapping("blogs")
+	@GetMapping("/blogs")
 	public String blogs(
 			@PageableDefault(size = 2, sort = { "updateTime" }, direction = Sort.Direction.DESC) Pageable pageable,
-			Blog blog, Model model) {
-		model.addAttribute("page", blogService.listBlog(pageable, blog));
+			BlogQuery blogQuery, Model model) {
+		model.addAttribute("types", typeService.listType());
+		model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
 		return "admin/blogs";
+	}
+	
+	@PostMapping("/blogs/search")
+	public String search(
+			@PageableDefault(size = 2, sort = { "updateTime" }, direction = Sort.Direction.DESC) Pageable pageable,
+			BlogQuery blogQuery, Model model) {
+		model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
+		return "admin/blogs :: blogList";
 	}
 }

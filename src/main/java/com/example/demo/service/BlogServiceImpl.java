@@ -20,6 +20,7 @@ import com.example.demo.dao.BlogRepository;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.po.Blog;
 import com.example.demo.po.Type;
+import com.example.demo.vo.BlogQuery;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -36,19 +37,19 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public Page<Blog> listBlog(Pageable pageable, Blog blog) {
+	public Page<Blog> listBlog(Pageable pageable, BlogQuery blogQuery) {
 		return blogRepository.findAll(new Specification<Blog>() {
 			@Override
 			public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 				List<Predicate> predicates = new ArrayList<>();
-				if (blog.getTitle() != null && !"".equals(blog.getTitle())) {
-					predicates.add(criteriaBuilder.like(root.get("title"), "%" + blog.getTitle() + "%"));
+				if (blogQuery.getTitle() != null && !"".equals(blogQuery.getTitle())) {
+					predicates.add(criteriaBuilder.like(root.get("title"), "%" + blogQuery.getTitle() + "%"));
 				}
-				if (blog.getType().getId() != null) {
-					predicates.add(criteriaBuilder.equal(root.<Type>get("type").get("id"), blog.getType().getId()));
+				if (blogQuery.getTypeId() != null) {
+					predicates.add(criteriaBuilder.equal(root.<Type>get("type").get("id"), blogQuery.getTypeId()));
 				}
-				if (blog.isRecommend()) {
-					predicates.add(criteriaBuilder.equal(root.<Boolean>get("recommend"), blog.isRecommend()));
+				if (blogQuery.isRecommend()) {
+					predicates.add(criteriaBuilder.equal(root.<Boolean>get("recommend"), blogQuery.isRecommend()));
 				}
 				query.where(predicates.toArray(new Predicate[predicates.size()]));
 				return null;
