@@ -21,11 +21,14 @@
 		<div class="ui container">
 			<div class="ui inverted secondary stackable menu">
 				<h2 class="ui teal header item">Blog</h2>
-				<a href="#" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
-				<a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
-				<a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
-				<a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
-				<a href="#" class="m-item item m-mobile-hide"><i class="mini info icon"></i>关于我</a>
+				<a href="#" class="active m-item item m-mobile-hide"><i
+					class="mini home icon"></i>首页</a> <a href="#"
+					class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
+				<a href="#" class="m-item item m-mobile-hide"><i
+					class="mini tags icon"></i>标签</a> <a href="#"
+					class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
+				<a href="#" class="m-item item m-mobile-hide"><i
+					class="mini info icon"></i>关于我</a>
 				<div class="right m-item item m-mobile-hide">
 					<div class="ui icon inverted transparent input m-margin-tb-tiny">
 						<input type="text" placeholder="Search...."> <i
@@ -48,14 +51,14 @@
 				<div class="ui horizontal link list">
 					<div class="item">
 						<img src="https://unsplash.it/100/100?image=1005" alt=""
-							th:src="@{${blog.user.avatar}}"
-							class="ui avatar image">
+							th:src="@{${blog.user.avatar}}" class="ui avatar image">
 						<div class="content">
 							<a href="#" class="header" th:text="${blog.user.nickname}">李仁密</a>
 						</div>
 					</div>
 					<div class="item">
-						<i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2021-11-11</span>
+						<i class="calendar icon"></i><span
+							th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2021-11-11</span>
 					</div>
 					<div class="item">
 						<i class="eye icon"></i><span th:text="${blog.views}">2345</span>
@@ -65,8 +68,7 @@
 			<div class="ui attached segment">
 				<!--图片区域-->
 				<img src="https://unsplash.it/800/450?image=1005" alt=""
-					th:src="@{${blog.firstPicture}}"
-					class="ui fluid rounded image">
+					th:src="@{${blog.firstPicture}}" class="ui fluid rounded image">
 			</div>
 			<div class="ui  attached padded segment">
 				<!--内容-->
@@ -520,7 +522,8 @@ h5,h6{font-size:1em;}
 
 				<!--标签-->
 				<div class="m-padding-lr-responsive">
-					<div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论</div>
+					<div class="ui basic teal left pointing label"
+						th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论</div>
 				</div>
 
 				<!--赞赏-->
@@ -531,12 +534,14 @@ h5,h6{font-size:1em;}
 					<div class="ui orange basic label">
 						<div class="ui images" style="font-size: inherit !important;">
 							<div class="image">
-								<img src="../static/images/wechat.jpg" alt="" th:src="@{/images/wechat.jpg}"
+								<img src="../static/images/wechat.jpg" alt=""
+									th:src="@{/images/wechat.jpg}"
 									class="ui rounded bordered image" style="width: 120px">
 								<div>支付宝</div>
 							</div>
 							<div class="image">
-								<img src="../static/images/wechat.jpg" alt="" th:src="@{/images/wechat.jpg}"
+								<img src="../static/images/wechat.jpg" alt=""
+									th:src="@{/images/wechat.jpg}"
 									class="ui rounded bordered image" style="width: 120px">
 								<div>微信</div>
 							</div>
@@ -550,14 +555,18 @@ h5,h6{font-size:1em;}
 				<div class="ui middle aligned grid">
 					<div class="eleven wide column">
 						<ui class="list">
-						<li>作者：<span th:text="${blog.user.nickname}">李仁密</span><a href="#" target="_blank" th:href="@{/about}">（联系作者）</a></li>
-						<li>发表时间：<span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm')}">2017-10-02 09:08</span></li>
+						<li>作者：<span th:text="${blog.user.nickname}">李仁密</span><a
+							href="#" target="_blank" th:href="@{/about}">（联系作者）</a></li>
+						<li>发表时间：<span
+							th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm')}">2017-10-02
+								09:08</span></li>
 						<li>版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</li>
 						<li>公众号转载：请在文末添加作者公众号二维码</li>
 						</ui>
 					</div>
 					<div class="five wide column">
-						<img src="../static/images/wechat.jpg" alt="" th:src="@{/images/wechat.jpg}"
+						<img src="../static/images/wechat.jpg" alt=""
+							th:src="@{/images/wechat.jpg}"
 							class="ui right floated rounded bordered image"
 							style="width: 110px">
 					</div>
@@ -571,17 +580,49 @@ h5,h6{font-size:1em;}
 							<h3 class="ui dividing header">评论</h3>
 							<div class="comment" th:each="comment:${comments}">
 								<a class="avatar"> <img
-									src="https://unsplash.it/100/100?image=1005" th:src="@{${comment.avatar}}">
+									src="https://unsplash.it/100/100?image=1005"
+									th:src="@{${comment.avatar}}">
 								</a>
 								<div class="content">
 									<a class="author" th:text="${comment.nickname}">Matt</a>
 									<div class="metadata">
-										<span class="date" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
+										<span class="date"
+											th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">Today
+											at 5:42PM</span>
 									</div>
-									<div class="text" th:text="${comment.content}">How artistic!</div>
+									<div class="text" th:text="${comment.content}">How
+										artistic!</div>
 									<div class="actions">
-										<a class="reply" data-commentid="1" data-commentnickname="Matt" 
-										th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}" onclick="rely(this)">回复</a>
+										<a class="reply" data-commentid="1"
+											data-commentnickname="Matt"
+											th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}"
+											onclick="reply(this)">回复</a>
+									</div>
+								</div>
+								<div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
+									<div class="comment" th:each="reply : ${comment.replyComments}">
+										<a class="avatar"> <img
+											src="https://unsplash.it/100/100?image=1005"
+											th:src="@{${reply.avatar}}">
+										</a>
+										<div class="content">
+											<a class="author" th:text="${reply.nickname}">
+												<span th:text="${reply.nickname}">Matt</span>&nbsp;<span th:text="|@ ${reply.parentComment.nickname}|" class="m-teal">@小红</span>
+											</a>
+											<div class="metadata">
+												<span class="date"
+													th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH:mm')}">Today
+													at 5:42PM</span>
+											</div>
+											<div class="text" th:text="${reply.content}">How
+												artistic!</div>
+											<div class="actions">
+												<a class="reply" data-commentid="1"
+													data-commentnickname="Matt"
+													th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickname}"
+													onclick="rely(this)">回复</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -660,7 +701,8 @@ h5,h6{font-size:1em;}
 							</div>
 						</div>
 						<div class="field  m-margin-bottom-small m-mobile-wide">
-							<button id="commentpost-btn" type="button" class="ui teal button m-mobile-wide">
+							<button id="commentpost-btn" type="button"
+								class="ui teal button m-mobile-wide">
 								<i class="edit icon"></i>发布
 							</button>
 						</div>
@@ -783,12 +825,12 @@ h5,h6{font-size:1em;}
 			popup : $('.wechat-qr'),
 			position : 'left center'
 		});
-		
+
 		var serverurl = "127.0.0.1:8080"
-		var url = /*[[@{/blog/{id}(id=$(blog.id))}]]*/"";
+		var url = /*[[@{/blog/{id}(id=${blog.id})}]]*/"";
 
 		var qrcode = new QRCode("qrcode", {
-			text : serverurl+url,
+			text : serverurl + url,
 			width : 110,
 			height : 110,
 			colorDark : "#000000",
@@ -811,37 +853,38 @@ h5,h6{font-size:1em;}
 				console.log('Scrolled to waypoint!  ' + direction);
 			}
 		});
-		
+
 		$('.ui.form').form({
-			fields: {
-				title: {
-					identifier: 'content',
-					rules: [{
-						type: 'empty',
-						prompt: '请输入评论内容'
-					}]
+			fields : {
+				title : {
+					identifier : 'content',
+					rules : [ {
+						type : 'empty',
+						prompt : '请输入评论内容'
+					} ]
 				},
-				content: {
-					identifier: 'nickname',
-					rules: [{
-						type: 'empty',
-						prompt: '请输入你的大名'
-					}]
+				content : {
+					identifier : 'nickname',
+					rules : [ {
+						type : 'empty',
+						prompt : '请输入你的大名'
+					} ]
 				},
-				type: {
-					identifier: 'email',
-					rules: [{
-						type: 'email',
-						prompt: '请填写正确的邮箱地址'
-					}]
+				type : {
+					identifier : 'email',
+					rules : [ {
+						type : 'email',
+						prompt : '请填写正确的邮箱地址'
+					} ]
 				}
 			}
 		});
-		
+
 		$(function() {
-			$("#comment-container").load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"");
+			$("#comment-container").load(
+					/*[[@{/comments/{id}(id=${blog.id})}]]*/"");
 		});
-		
+
 		$('#commentpost-btn').click(function() {
 			var boo = $('.ui.form').form('validate form');
 			if (boo) {
@@ -851,7 +894,7 @@ h5,h6{font-size:1em;}
 				console.log('校验失效');
 			}
 		});
-		
+
 		function postData() {
 			$("#comment-container").load(/*[[@{/comments}]]*/"", {
 				"parentComment.id" : $("[name='parentComment.id']").val(),
@@ -864,17 +907,18 @@ h5,h6{font-size:1em;}
 				clearContent();
 			});
 		}
-		
+
 		function clearContent() {
 			$("[name='content']").val('');
 			$("[name='parentComment.id']").val(-1);
 			$("[name='content']").attr("placeholder", "请输入评论信息......");
 		}
-		
+
 		function reply(obj) {
 			var commentId = $(obj).data('commentid');
 			var commentNickname = $(obj).data('commentnickname');
-			$("[name='content']").attr("placeholder", "@"+commentNickname).focus();
+			$("[name='content']").attr("placeholder", "@" + commentNickname)
+					.focus();
 			$("[name='parentComment.id']").val(commentId);
 			$(window).scrollTo($('#comment-form'), 500);
 		}
