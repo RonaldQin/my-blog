@@ -1,5 +1,7 @@
 package com.example.demo.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.po.Comment;
+import com.example.demo.po.User;
 import com.example.demo.service.BlogService;
 import com.example.demo.service.CommentService;
 
@@ -30,9 +33,16 @@ public class CommentController {
 	}
 
 	@PostMapping("/comments")
-	public String post(Comment comment) {
+	public String post(Comment comment, HttpSession session) {
 		Long blogId = comment.getBlog().getId();
 		comment.setBlog(blogService.getBlog(blogId));
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			comment.setAvatar(user.getAvatar());
+			comment.setAdminComment(true);
+		} else {
+			comment.setAvatar(avatar);
+		}
 		comment.setAvatar(avatar);
 		commentService.saveComment(comment);
 		return "redirect:/comments/" + comment.getBlog().getId();

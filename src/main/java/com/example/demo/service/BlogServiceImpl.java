@@ -42,6 +42,7 @@ public class BlogServiceImpl implements BlogService {
 		return optional.get();
 	}
 	
+	@Transactional
 	@Override
 	public Blog getAndConvert(Long id) {
 		Optional<Blog> optional = blogRepository.findById(id);
@@ -53,6 +54,7 @@ public class BlogServiceImpl implements BlogService {
 		BeanUtils.copyProperties(blog, b);
 		String content = b.getContent();
 		b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+		blogRepository.updateViews(id);
 		return b;
 	}
 
