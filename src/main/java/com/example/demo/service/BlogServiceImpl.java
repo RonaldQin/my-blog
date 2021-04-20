@@ -2,7 +2,9 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -106,6 +108,21 @@ public class BlogServiceImpl implements BlogService {
 		Sort sort = Sort.by(Sort.Direction.DESC, "updateTime");
 		Pageable pageable = PageRequest.of(0, size, sort);
 		return blogRepository.findTop(pageable);
+	}
+	
+	@Override
+	public Map<String, List<Blog>> archiveBlog() {
+		List<String> years = blogRepository.findGroupYear();
+		Map<String, List<Blog>> map = new HashMap<>();
+		for (String year : years) {
+			map.put(year, blogRepository.findByYear(year));
+		}
+		return map;
+	}
+	
+	@Override
+	public Long countBlog() {
+		return blogRepository.count();
 	}
 
 	@Transactional

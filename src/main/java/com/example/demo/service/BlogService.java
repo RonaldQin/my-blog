@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,10 @@ public interface BlogService {
 	Page<Blog> listBlog(Long tagId, Pageable pageable);
 	
 	List<Blog> listRecommendBlogTop(Integer size);
+	
+	Map<String, List<Blog>> archiveBlog();
+	
+	Long countBlog();
 
 	Blog saveBlog(Blog blog);
 
