@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
@@ -87,6 +88,17 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public Page<Blog> listBlog(String query, Pageable pageable) {
 		return blogRepository.findByQuery(query, pageable);
+	}
+	
+	@Override
+	public Page<Blog> listBlog(Long tagId, Pageable pageable) {
+		return blogRepository.findAll(new Specification<Blog>() {
+			@Override
+			public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+				Join join = root.join("tags");
+				return criteriaBuilder.equal(join.get("id"), tagId);
+			}
+		}, pageable);
 	}
 	
 	@Override
