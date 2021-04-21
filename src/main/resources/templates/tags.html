@@ -102,7 +102,7 @@
 										<a th:href="@{/tags/{id}(id=${tag.id})}"
 											class="ui basic left pointing label m-padding-mini m-text-thin" 
 											th:classappend="${tag.id==activeTagId} ? 'teal'"
-											th:each="tag:${blog.tag}" th:text="${tag.name}">方法论</a>
+											th:each="tag:${blog.tags}" th:text="${tag.name}">方法论</a>
 									</div>
 								</div>
 							</div>
